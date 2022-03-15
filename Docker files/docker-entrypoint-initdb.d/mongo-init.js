@@ -4,20 +4,20 @@ if(isAuth)
 {
     var arrayOfStudents = [{
         "id": 0,
-        "Name": "Yehia",
-        "Dgree":100
+        "name": "Yehia",
+        "degree":100
       }, {
         "id": 1,
-        "Name": "Ahmed",
-        "Dgree":90
+        "name": "Ahmed",
+        "degree":90
       }, {
         "id": 2,
-        "Name": "Mohamed",
-        "Dgree":80
+        "name": "Mohamed",
+        "degree":80
       },{
         "id": 3,
-        "Name": "Youssef",
-        "Dgree":98
+        "name": "Youssef",
+        "degree":98
       }];
     print("User is authenticated");
     db = db.getSiblingDB('TDD');
