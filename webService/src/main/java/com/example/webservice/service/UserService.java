@@ -11,4 +11,8 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    public float calcAverage()
+    {
+        return 0f;
+    }
 }
