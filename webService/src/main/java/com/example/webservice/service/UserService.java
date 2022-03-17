@@ -5,14 +5,22 @@ import com.example.webservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    public float calcAverage()
-    {
-        return 0f;
+
+    public float calcAverage() {
+        float count = 0;
+        //get data from database
+        List<User> users = userRepository.findAll();
+        if (users.size() == 0)
+            return 0.0f;
+        for (User user : users) count += user.getDegree();
+        return count / users.size();
+
     }
 }
