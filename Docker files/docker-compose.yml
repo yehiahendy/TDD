@@ -1,10 +1,13 @@
 version: '3.8'
 services:
+
+
   mongo:
     container_name: mongodb-container
     image: mongo:latest
     restart: always
-    ports : 
+    hostname: mongodb
+    ports:
       - 3000:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -12,7 +15,6 @@ services:
       MONGO_INITDB_DATABASE: admin
     volumes:
       - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-
   mongo-express:
     image: mongo-express
     restart: always
@@ -27,3 +29,27 @@ services:
       - ME_CONFIG_MONGODB_AUTH_PASSWORD=1234
     depends_on:
       - mongo
+  app:
+    container_name: springboot-container
+    build:
+      dockerfile: Dockerfile
+      target: runtime
+      context: ../webService
+    ports:
+      - 8080:8080
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=root
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=1234
+    restart: always
+    depends_on:
+      - mongo
+
+networks:
+  default:
+    driver: bridge
+    name: tdd-network
+    external: true

@@ -4,10 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
 
-@ControllerAdvice
-public class ApiExceptionHandler extends ResponseStatusExceptionHandler {
+
+
+public class ApiExceptionHandler{
     @ExceptionHandler(ApiBaseException.class)
     public ResponseEntity<Error> handleApiExceptions(ApiBaseException ex, WebRequest request){
         Error error = new Error(ex.getMessage(), request.getDescription(false));
