@@ -17,7 +17,8 @@ public class UserService {
         float count = 0;
         //get data from database
         List<User> users = userRepository.findAll();
-
+        if (users.size() == 0)
+            return 0.0f;
         for (User user : users) count += user.getDegree();
         return count / users.size();
 
