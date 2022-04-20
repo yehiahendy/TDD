@@ -22,7 +22,7 @@ jobs:
         cache: maven
     - name: Maven Package
       run: |
-        cd ../
+        ls
         cd webService
         mvn -B clean package -DskipTests
     - name: Maven Verify
