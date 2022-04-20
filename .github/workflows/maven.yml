@@ -22,8 +22,9 @@ jobs:
         cache: maven
     - name: Maven Package
       run: |
-        ls
         cd webService
         mvn -B clean package -DskipTests
     - name: Maven Verify
-      run: mvn -B clean verify
+      run: |
+        cd webService 
+        mvn -B clean verify
