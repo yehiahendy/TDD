@@ -23,4 +23,8 @@ public class UserService {
         return count / users.size();
 
     }
+    public void dummyMethod()
+    {
+
+    }
 }
